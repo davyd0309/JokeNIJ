@@ -7,7 +7,9 @@ import org.hibernate.validator.constraints.Length;
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
+import java.util.HashSet;
 import java.util.Set;
+import java.util.TreeSet;
 
 @Entity
 public class User {
@@ -42,6 +44,6 @@ public class User {
     @Getter @Setter
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(name = "User_Role",joinColumns = @JoinColumn(name = "user_id"),inverseJoinColumns = @JoinColumn(name = "role_id"))
-    private Set<Role> roles;
+    private Set<Role> roles = new HashSet<Role>();
 
 }
