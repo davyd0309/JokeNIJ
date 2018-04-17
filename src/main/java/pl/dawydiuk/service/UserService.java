@@ -1,10 +1,13 @@
 package pl.dawydiuk.service;
 
 import pl.dawydiuk.domain.User;
+import pl.dawydiuk.dto.UserDTO;
+
+import java.util.List;
 
 public interface UserService {
 
-    void addUser(User newUser);
-
+    User addUser(UserDTO newUserDTO);
+    List<User> getAllUsers();
 
 }

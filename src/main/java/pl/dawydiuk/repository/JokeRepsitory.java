@@ -2,10 +2,12 @@ package pl.dawydiuk.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
-import pl.dawydiuk.domain.User;
-
+import pl.dawydiuk.domain.Joke;
+import pl.dawydiuk.domain.Role;
 
 @Repository
-public interface UserRepository extends JpaRepository<User,Long>{
+public interface JokeRepsitory extends JpaRepository<Joke, Long> {
+
+
 
 }

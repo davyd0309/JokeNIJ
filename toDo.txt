@@ -1,0 +1,5 @@
+- metody @Secured w backand i tagi spring sec na stronach JSP.
+- wszystkie label na stronach JSP maja byc zaciagane z pliku message
+- własny validator
+- transaction
+- paginacja

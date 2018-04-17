@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import pl.dawydiuk.domain.User;
+import pl.dawydiuk.dto.UserDTO;
 import pl.dawydiuk.service.UserService;
 
 import javax.validation.Valid;
@@ -29,15 +30,15 @@ public class RegisterPageController {
     @RequestMapping("/register")
     public String showRegisterPage(Model model) {
 
-        User user = new User();
-        model.addAttribute("user",user);
+        UserDTO userDTO = UserDTO.builder().build();
+        model.addAttribute("user",userDTO);
         return "register";
     }
 
     @POST
     @RequestMapping("/addUser")
-    public String registerUserAction(@Valid User user, BindingResult result,Model model){
-
+    public String registerUserAction(@Valid UserDTO userDTO, BindingResult result,Model model){
+        userService.addUser(userDTO);
         return "register";
 
     }

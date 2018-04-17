@@ -1,17 +1,23 @@
 package pl.dawydiuk.service;
 
 
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import pl.dawydiuk.domain.Role;
 import pl.dawydiuk.domain.User;
+import pl.dawydiuk.dto.UserDTO;
 import pl.dawydiuk.repository.RoleRepsitory;
 import pl.dawydiuk.repository.UserRepository;
 
+import java.util.List;
+
 @Service
 @Transactional
+@Qualifier("userServiceImpl")
 public class UserServiceImpl implements UserService {
 
 
@@ -26,12 +32,46 @@ public class UserServiceImpl implements UserService {
         this.encoder = encoder;
     }
 
+
     @Override
-    public void addUser(User newUser) {
-        newUser.setPassword(encoder.encode(newUser.getPassword()));
-        newUser.setActive(1);
-        Role roleUser = roleRepsitory.findByRole("USER");
-        newUser.getRoles().add(roleUser);
-        userRepository.save(newUser);
+    public User addUser(UserDTO newUserDTO) {
+
+        User user = transformUserDTOToUser(newUserDTO);
+        codeUserPassword(user);
+        setActiveForUser(user);
+        setRoleForUser(user);
+        userRepository.save(user);
+        return user;
     }
+
+    @Override
+    public List<User> getAllUsers() {
+        return userRepository.findAll();
+    }
+
+    private void setActiveForUser(User user) {
+        user.setActive(true);
+    }
+
+
+    private void codeUserPassword(User user) {
+        user.setPassword(encoder.encode(user.getPassword()));
+    }
+
+
+    private User transformUserDTOToUser(UserDTO userDTO) {
+        ModelMapper mapper = new ModelMapper();
+        User newUser = User.builder().build();
+        mapper.map(userDTO, newUser);
+        return newUser;
+    }
+
+
+    private void setRoleForUser(User user) {
+        Role roleUser = roleRepsitory.findByRole("USER");
+        user.getRoles().add(roleUser);
+
+    }
+
+
 }
