@@ -1,10 +1,11 @@
 package pl.dawydiuk.service;
 
 import pl.dawydiuk.domain.User;
+import pl.dawydiuk.dto.UserDTO;
 
 public interface UserService {
 
-    void addUser(User newUser);
+    User addUser(UserDTO newUserDTO);
 
 
 }

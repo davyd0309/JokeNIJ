@@ -5,7 +5,7 @@ import org.springframework.stereotype.Repository;
 import pl.dawydiuk.domain.Role;
 
 @Repository
-public interface RoleRepsitory extends JpaRepository<Role, Integer> {
+public interface RoleRepsitory extends JpaRepository<Role, Long> {
 
 
     Role findByRole(String role);

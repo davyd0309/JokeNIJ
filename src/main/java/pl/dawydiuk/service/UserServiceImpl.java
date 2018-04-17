@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import pl.dawydiuk.domain.Role;
 import pl.dawydiuk.domain.User;
+import pl.dawydiuk.dto.UserDTO;
 import pl.dawydiuk.repository.RoleRepsitory;
 import pl.dawydiuk.repository.UserRepository;
 
@@ -26,12 +27,20 @@ public class UserServiceImpl implements UserService {
         this.encoder = encoder;
     }
 
+
     @Override
-    public void addUser(User newUser) {
-        newUser.setPassword(encoder.encode(newUser.getPassword()));
+    public User addUser(UserDTO newUserDTO) {
+
+        User newUser = new User();
+        newUser.setEmail(newUserDTO.getEmail());
+        newUser.setLastName(newUserDTO.getLastName());
+        newUser.setName(newUserDTO.getName());
+        newUser.setPassword(encoder.encode(newUserDTO.getPassword()));
         newUser.setActive(1);
         Role roleUser = roleRepsitory.findByRole("USER");
         newUser.getRoles().add(roleUser);
         userRepository.save(newUser);
+
+        return newUser;
     }
 }
