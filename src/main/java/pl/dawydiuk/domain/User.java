@@ -1,9 +1,6 @@
 package pl.dawydiuk.domain;
 
-import lombok.Builder;
-import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 import org.hibernate.validator.constraints.Length;
 
 import javax.persistence.*;
@@ -20,11 +17,9 @@ import java.util.TreeSet;
 public class User {
 
 
-
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Getter @Setter
-    @Column(name = "user_id")
     private Long id;
 
     @Getter @Setter

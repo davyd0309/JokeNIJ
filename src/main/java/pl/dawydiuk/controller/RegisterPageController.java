@@ -30,15 +30,15 @@ public class RegisterPageController {
     @RequestMapping("/register")
     public String showRegisterPage(Model model) {
 
-        UserDTO userDTO = UserDTO.builder().build();
+        UserDTO userDTO = new UserDTO();
         model.addAttribute("user",userDTO);
         return "register";
     }
 
     @POST
-    @RequestMapping("/addUser")
-    public String registerUserAction(@Valid UserDTO userDTO, BindingResult result,Model model){
-        userService.addUser(userDTO);
+    @RequestMapping("/adduser")
+    public String registerUserAction(@Valid UserDTO user, BindingResult result,Model model){
+        userService.addUser(user);
         return "register";
 
     }

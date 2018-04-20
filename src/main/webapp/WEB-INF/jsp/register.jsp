@@ -18,7 +18,7 @@
 <c:out value="${message}"/>
 </p>
 
-<sf:form id="registerForm" action="/addUser" modelAttribute="user" enctype="multipart/form-data" method="POST">
+<sf:form id="registerForm" action="/adduser" modelAttribute="user" enctype="multipart/form-data" method="POST">
 
 
             <table border="1" width="30%" cellpadding="3">

@@ -48,6 +48,7 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
         httpSec.authorizeRequests().antMatchers("/").permitAll()
                 .antMatchers("/login").permitAll()
                 .antMatchers("/register").permitAll()
+                .antMatchers("/adduser").permitAll()
                 //.antMatchers("/admin/**").hasAuthority("ADMNIN")
                 .anyRequest().authenticated()
                 .and().csrf().disable()

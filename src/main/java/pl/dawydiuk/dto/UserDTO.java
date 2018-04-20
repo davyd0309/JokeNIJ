@@ -2,9 +2,11 @@ package pl.dawydiuk.dto;
 
 import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@Builder
+
+@NoArgsConstructor
 public class UserDTO {
 
     @Getter

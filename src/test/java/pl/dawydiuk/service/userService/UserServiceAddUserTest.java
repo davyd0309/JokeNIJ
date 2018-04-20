@@ -123,12 +123,12 @@ public class UserServiceAddUserTest extends UserServiceSetUp {
     }
 
     private UserDTO givenUserDto(String email, String name, String lastName, String password) {
-        return UserDTO.builder()
-                .email(email)
-                .name(name)
-                .lastName(lastName)
-                .password(password)
-                .build();
+        UserDTO userDTO = new UserDTO();
+        userDTO.setEmail(email);
+        userDTO.setName(name);
+        userDTO.setLastName(lastName);
+        userDTO.setPassword(password);
+        return userDTO;
     }
 
 }
