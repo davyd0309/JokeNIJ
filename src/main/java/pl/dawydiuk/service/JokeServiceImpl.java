@@ -11,6 +11,9 @@ import pl.dawydiuk.enums.JokeCategoryEnum;
 import pl.dawydiuk.repository.JokeRepsitory;
 import pl.dawydiuk.repository.UserRepository;
 
+import javax.validation.constraints.NotNull;
+import java.util.List;
+
 @Service
 @Transactional
 public class JokeServiceImpl implements JokeService{
@@ -50,5 +53,11 @@ public class JokeServiceImpl implements JokeService{
         newJoke.setCategory(JokeCategoryEnum.valueOf(jokeDTO.getCategory()));
 
         return newJoke;
+    }
+
+    @Override
+    public List<Joke> getAllUserJokes(Long userId) {
+
+        return null;
     }
 }

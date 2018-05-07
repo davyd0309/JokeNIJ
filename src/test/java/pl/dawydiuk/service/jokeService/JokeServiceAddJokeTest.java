@@ -73,6 +73,7 @@ public class JokeServiceAddJokeTest {
         joke = jokeService.addJoke(jokeDTO);
         //then
         assertThat(joke.getContent()).isEqualTo("This is joke content");
+
     }
 
     @Test
