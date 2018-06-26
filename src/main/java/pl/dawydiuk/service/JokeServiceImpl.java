@@ -60,4 +60,14 @@ public class JokeServiceImpl implements JokeService{
 
         return null;
     }
+
+    @Override
+    public JokeDTO getJokeById(Long jokeId) {
+        return null;
+    }
+
+    @Override
+    public void deleteJoke(Long jokeId) {
+
+    }
 }

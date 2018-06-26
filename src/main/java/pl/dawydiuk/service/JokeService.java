@@ -10,5 +10,7 @@ public interface JokeService {
 
     Joke addJoke(JokeDTO joke);
     List<Joke> getAllUserJokes(Long userId);
+    JokeDTO getJokeById(Long jokeId);
+    void deleteJoke(Long jokeId);
 
 }

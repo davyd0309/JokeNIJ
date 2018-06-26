@@ -1,6 +1,7 @@
 package pl.dawydiuk.service;
 
 
+import com.google.common.collect.Lists;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -46,7 +47,18 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public List<UserDTO> getAllUsers() {
-        return userRepository.findAll();
+        //return userRepository.findAll();
+        return Lists.newArrayList();
+    }
+
+    @Override
+    public UserDTO getUserById(Long userId) {
+        return null;
+    }
+
+    @Override
+    public void deleteUser(Long userId) {
+
     }
 
     private void setActiveForUser(User user) {

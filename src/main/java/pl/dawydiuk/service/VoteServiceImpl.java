@@ -6,8 +6,10 @@ import org.springframework.transaction.annotation.Transactional;
 @Service
 @Transactional
 public class VoteServiceImpl implements VoteService{
+
+
     @Override
-    public void addVoteOnJoke(Long jokeId, Long userId, String voteLevel) {
+    public void addVote(Long jokeId, Long userId, String voteLevel) {
 
     }
 }

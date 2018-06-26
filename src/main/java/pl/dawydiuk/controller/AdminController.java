@@ -39,8 +39,8 @@ public class AdminController {
 
     @DeleteMapping(value = "/admin/deleteuser/{id}")
     @Secured(value = {"ROLE_ADMIN"})
-    public ResponseEntity<UserDTO> deleteUser(@PathVariable Long userId) {
-        UserDTO user = userService.getUser(userId);
+    public ResponseEntity<UserDTO> deleteUser(@RequestParam Long userId) {
+        UserDTO user = userService.getUserById(userId);
         HttpStatus httpStatus;
         if (user != null) {
             userService.deleteUser(userId);
@@ -55,8 +55,8 @@ public class AdminController {
 
     @GetMapping(value = "/admin/finduserbyid/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     @Secured(value = {"ROLE_ADMIN"})
-    public ResponseEntity<UserDTO> findUserById(@PathVariable Long userId) {
-        UserDTO user = userService.getUser(userId);
+    public ResponseEntity<UserDTO> findUserById(@RequestParam Long userId) {
+        UserDTO user = userService.getUserById(userId);
         HttpStatus httpStatus;
         if (user != null) {
             httpStatus = HttpStatus.OK;

@@ -23,25 +23,19 @@ public class User {
     private Long id;
 
     @Getter @Setter
-    @Email(message = "Podaj prawidłowy adres email.")
-    @NotEmpty(message = "Adres email jest wymagany")
-    @NotNull
+
     private String email;
 
     @Getter @Setter
-    @Length(min = 6,message = "Hasło musi zawierać miniumum 6 znaków.")
-    @NotEmpty(message = "Hasło jest wymagane")
-    @NotNull
+
     private String password;
 
     @Getter @Setter
-    @NotEmpty(message = "Imię jest wymagane")
-    @NotNull
+
     private String name;
 
     @Getter @Setter
-    @NotEmpty(message = "Nazwisko jest wymagane")
-    @NotNull
+
     private String lastName;
 
     @Getter @Setter

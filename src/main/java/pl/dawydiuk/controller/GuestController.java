@@ -31,7 +31,7 @@ public class GuestController {
 
 
     @PostMapping(value = "addUser",consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<UserDTO> addAndSaveUser(@RequestBody @Valid UserDTO user,BindingResult result){
+    public ResponseEntity<UserDTO> addUser(@RequestBody @Valid UserDTO user,BindingResult result){
         userService.addUser(user);
         HttpStatus httpStatus = user !=null ? HttpStatus.CREATED : HttpStatus.CONFLICT;
         return new ResponseEntity<UserDTO>(httpStatus);
