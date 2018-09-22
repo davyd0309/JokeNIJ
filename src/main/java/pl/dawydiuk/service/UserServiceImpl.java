@@ -11,7 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 import pl.dawydiuk.domain.Role;
 import pl.dawydiuk.domain.User;
 import pl.dawydiuk.dto.UserDTO;
-import pl.dawydiuk.repository.RoleRepsitory;
+import pl.dawydiuk.repository.RoleRepository;
 import pl.dawydiuk.repository.UserRepository;
 
 import java.util.List;
@@ -23,13 +23,13 @@ public class UserServiceImpl implements UserService {
 
 
     private UserRepository userRepository;
-    private RoleRepsitory roleRepsitory;
+    private RoleRepository roleRepository;
     private BCryptPasswordEncoder encoder;
 
     @Autowired
-    public UserServiceImpl(UserRepository userRepository, RoleRepsitory roleRepsitory, BCryptPasswordEncoder encoder) {
+    public UserServiceImpl(UserRepository userRepository, RoleRepository roleRepository, BCryptPasswordEncoder encoder) {
         this.userRepository = userRepository;
-        this.roleRepsitory = roleRepsitory;
+        this.roleRepository = roleRepository;
         this.encoder = encoder;
     }
 
@@ -80,7 +80,7 @@ public class UserServiceImpl implements UserService {
 
 
     private void setRoleForUser(User user) {
-        Role roleUser = roleRepsitory.findByRole("USER");
+        Role roleUser = roleRepository.findByRole("USER");
         user.getRoles().add(roleUser);
 
     }

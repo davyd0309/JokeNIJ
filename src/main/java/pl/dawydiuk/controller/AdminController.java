@@ -14,6 +14,7 @@ import pl.dawydiuk.dto.UserDTO;
 import pl.dawydiuk.service.UserService;
 
 import javax.ws.rs.GET;
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -29,10 +30,19 @@ public class AdminController {
     }
 
 
-    @GetMapping(value = "/admin/users", produces = MediaType.APPLICATION_JSON_VALUE)
-    @Secured(value = {"ROLE_ADMIN"})
+    @GetMapping(value = "/admin/users",produces = MediaType.APPLICATION_JSON_VALUE)
+//    @Secured(value = {"ROLE_ADMIN"})
     public ResponseEntity<List<UserDTO>> getAllUsers() {
-        List<UserDTO> users = userService.getAllUsers();
+        UserDTO userDTO = new UserDTO("email1@pl","Konrad","Dawydiuk","Haslo1",true);
+        UserDTO userDTO1 = new UserDTO("email1@p2","Micha","Mart","Haslo2",true);
+        UserDTO userDTO2 = new UserDTO("email1@p3","Tomasz","Alok","Haslo3",true);
+        UserDTO userDTO3 = new UserDTO("email1@p4","Daru","Kwai","Haslo4",true);
+//        List<UserDTO> users = userService.getAllUsers();
+        List<UserDTO> users = new ArrayList<>();
+        users.add(userDTO);
+        users.add(userDTO1);
+        users.add(userDTO2);
+        users.add(userDTO3);
         HttpStatus httpStatus = !users.isEmpty() ? HttpStatus.OK : HttpStatus.NO_CONTENT;
         return new ResponseEntity<List<UserDTO>>(users, httpStatus);
     }

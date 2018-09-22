@@ -41,6 +41,7 @@ public class UserController {
     }
 
     @PostMapping(value = "addJoke",consumes = MediaType.APPLICATION_JSON_VALUE)
+    @Secured(value = {"ROLE_USER"})
     public ResponseEntity<JokeDTO> addAndSaveJoke(@RequestBody JokeDTO jokeDTO){
         jokeService.addJoke(jokeDTO);
         HttpStatus httpStatus = jokeDTO !=null ? HttpStatus.CREATED : HttpStatus.CONFLICT;
@@ -48,6 +49,7 @@ public class UserController {
     }
 
     @DeleteMapping(value = "deleteJoke/{id}")
+    @Secured(value = {"ROLE_USER"})
     public ResponseEntity<JokeDTO> deleteJoke(@RequestParam Long jokeId){
         JokeDTO jokeById = jokeService.getJokeById(jokeId);
         HttpStatus httpStatus;
@@ -63,6 +65,7 @@ public class UserController {
 
 
     @GetMapping(value = "findJokeById/{id}",produces = MediaType.APPLICATION_JSON_VALUE)
+    @Secured(value = {"ROLE_USER"})
     public ResponseEntity<JokeDTO> findJokeById(@PathVariable Long jokeId){
         JokeDTO jokeById = jokeService.getJokeById(jokeId);
         HttpStatus httpStatus;
@@ -76,6 +79,7 @@ public class UserController {
     }
 
     @PostMapping(value = "/user/addvote",consumes = MediaType.APPLICATION_JSON_VALUE)
+    @Secured(value = {"ROLE_USER"})
     public ResponseEntity<VoteDTO> addVote(@RequestBody @Valid VoteDTO vote, BindingResult result){
         voteService.addVote(null,null,null);
         HttpStatus httpStatus = vote !=null ? HttpStatus.CREATED : HttpStatus.CONFLICT;

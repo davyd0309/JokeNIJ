@@ -44,4 +44,11 @@ public class UserDTO {
     @Setter
     private boolean active;
 
+    public UserDTO(@Email(message = "Podaj prawidłowy adres email.") @NotEmpty(message = "Adres email jest wymagany") @NotNull String email, @NotEmpty(message = "Imię jest wymagane") @NotNull String name, @NotEmpty(message = "Nazwisko jest wymagane") @NotNull String lastName, @Length(min = 6, message = "Hasło musi zawierać miniumum 6 znaków.") @NotEmpty(message = "Hasło jest wymagane") @NotNull String password, boolean active) {
+        this.email = email;
+        this.name = name;
+        this.lastName = lastName;
+        this.password = password;
+        this.active = active;
+    }
 }

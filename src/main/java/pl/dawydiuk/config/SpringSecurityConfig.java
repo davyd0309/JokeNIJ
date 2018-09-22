@@ -43,21 +43,26 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
     @Override
-    protected void configure(HttpSecurity httpSec) throws Exception{
-
-        httpSec.authorizeRequests().antMatchers("/").permitAll()
-                .antMatchers("/login").permitAll()
-                .antMatchers("/register").permitAll()
-                .antMatchers("/adduser").permitAll()
-                //.antMatchers("/admin/**").hasAuthority("ADMNIN")
-                .anyRequest().authenticated()
-                .and().csrf().disable()
-                .formLogin().loginPage("/login").failureUrl("/login?error=true")
-                .defaultSuccessUrl("/").usernameParameter("email").passwordParameter("password")
-                .and().logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
-                .logoutSuccessUrl("/")
-                .and().exceptionHandling().accessDeniedPage("/denied");
+    protected void configure(HttpSecurity http) throws Exception{
+        http.authorizeRequests().antMatchers("/").permitAll();
     }
+
+//    @Override
+//    protected void configure(HttpSecurity httpSec) throws Exception{
+//
+//        httpSec.authorizeRequests().antMatchers("/").permitAll()
+//                .antMatchers("/login").permitAll()
+//                .antMatchers("/register").permitAll()
+//                .antMatchers("/adduser").permitAll()
+//                //.antMatchers("/admin/**").hasAuthority("ADMNIN")
+//                .anyRequest().authenticated()
+//                .and().csrf().disable()
+//                .formLogin()
+//                .defaultSuccessUrl("/").usernameParameter("email").passwordParameter("password")
+//                .and().logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
+//                .logoutSuccessUrl("/")
+//                .and().exceptionHandling().accessDeniedPage("/denied");
+//    }
 
 
     @Override
