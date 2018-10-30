@@ -22,9 +22,9 @@ import java.util.List;
 public class UserServiceImpl implements UserService {
 
 
-    private UserRepository userRepository;
-    private RoleRepository roleRepository;
-    private BCryptPasswordEncoder encoder;
+    private final UserRepository userRepository;
+    private final RoleRepository roleRepository;
+    private final BCryptPasswordEncoder encoder;
 
     @Autowired
     public UserServiceImpl(UserRepository userRepository, RoleRepository roleRepository, BCryptPasswordEncoder encoder) {
@@ -36,7 +36,6 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User addUser(UserDTO newUserDTO) {
-
         User user = transformUserDTOToUser(newUserDTO);
         codeUserPassword(user);
         setActiveForUser(user);

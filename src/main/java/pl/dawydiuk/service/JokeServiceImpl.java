@@ -1,6 +1,7 @@
 package pl.dawydiuk.service;
 
-import org.modelmapper.ModelMapper;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -11,23 +12,20 @@ import pl.dawydiuk.enums.JokeCategoryEnum;
 import pl.dawydiuk.repository.JokeRepsitory;
 import pl.dawydiuk.repository.UserRepository;
 
-import javax.validation.constraints.NotNull;
-import java.util.List;
-
 @Service
 @Transactional
 public class JokeServiceImpl implements JokeService{
 
 
     private UserRepository userRepository;
+    private JokeRepsitory jokeRepsitory;
+
 
     @Autowired
     public JokeServiceImpl(UserRepository userRepository, JokeRepsitory jokeRepsitory) {
         this.userRepository = userRepository;
         this.jokeRepsitory = jokeRepsitory;
     }
-
-    private JokeRepsitory jokeRepsitory;
 
 
     @Override

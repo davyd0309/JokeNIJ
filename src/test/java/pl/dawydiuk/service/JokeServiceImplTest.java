@@ -1,4 +1,4 @@
-package pl.dawydiuk.service.jokeService;
+package pl.dawydiuk.service;
 
 
 import org.assertj.core.util.Sets;
@@ -15,20 +15,16 @@ import pl.dawydiuk.dto.JokeDTO;
 import pl.dawydiuk.enums.JokeCategoryEnum;
 import pl.dawydiuk.repository.JokeRepsitory;
 import pl.dawydiuk.repository.UserRepository;
-import pl.dawydiuk.service.JokeService;
-import pl.dawydiuk.service.JokeServiceImpl;
 
 import java.time.Clock;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.ZoneId;
 import java.util.Set;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.ArgumentMatchers.any;
 
 @RunWith(MockitoJUnitRunner.class)
-public class JokeServiceAddJokeTest {
+public class JokeServiceImplTest {
 
     private JokeService jokeService;
 
@@ -48,16 +44,10 @@ public class JokeServiceAddJokeTest {
 
     }
 
-
     @Test
-    public void jokeShouldServiceNotNull() {
-        Assert.assertNotNull(jokeService);
-    }
-
-    @Test
-    public void jokeShouldHaveTitle() {
+    public void addJoke_shouldHasTitle() {
         //given
-        JokeDTO jokeDTO = givenJokeDTO("This is joke title", "This is joke content", LocalDate.now(Clock.systemDefaultZone()), JokeCategoryEnum.CATEGORY_1.name(), 55L);
+        JokeDTO jokeDTO = givenJokeDTO(LocalDate.now(Clock.systemDefaultZone()), JokeCategoryEnum.CATEGORY_1.name());
         //when
         joke = jokeService.addJoke(jokeDTO);
         //then
@@ -65,10 +55,9 @@ public class JokeServiceAddJokeTest {
     }
 
     @Test
-    public void jokeShouldHaveContent() {
-
+    public void addJoke_shouldHasContent() {
         //given
-        JokeDTO jokeDTO = givenJokeDTO("This is joke title", "This is joke content", LocalDate.now(Clock.systemDefaultZone()), JokeCategoryEnum.CATEGORY_1.name(), 55L);
+        JokeDTO jokeDTO = givenJokeDTO(LocalDate.now(Clock.systemDefaultZone()), JokeCategoryEnum.CATEGORY_1.name());
         //when
         joke = jokeService.addJoke(jokeDTO);
         //then
@@ -77,10 +66,9 @@ public class JokeServiceAddJokeTest {
     }
 
     @Test
-    public void jokeShouldHaveAddDate() {
-
+    public void addJoke_shouldHasAddDate() {
         //given
-        JokeDTO jokeDTO = givenJokeDTO("This is joke title", "This is joke content", LocalDate.now(Clock.systemDefaultZone()), JokeCategoryEnum.CATEGORY_1.name(), 55L);
+        JokeDTO jokeDTO = givenJokeDTO(LocalDate.now(Clock.systemDefaultZone()), JokeCategoryEnum.CATEGORY_1.name());
         //when
         joke = jokeService.addJoke(jokeDTO);
         //then
@@ -88,9 +76,9 @@ public class JokeServiceAddJokeTest {
     }
 
     @Test
-    public void jokeShouldHaveCategory() {
+    public void addJoke_shouldHasCategory() {
         //given
-        JokeDTO jokeDTO = givenJokeDTO("This is joke title", "This is joke content", LocalDate.now(Clock.systemDefaultZone()), JokeCategoryEnum.CATEGORY_1.name(), 55L);
+        JokeDTO jokeDTO = givenJokeDTO(LocalDate.now(Clock.systemDefaultZone()), JokeCategoryEnum.CATEGORY_1.name());
         //when
         joke = jokeService.addJoke(jokeDTO);
         //then
@@ -98,9 +86,9 @@ public class JokeServiceAddJokeTest {
     }
 
     @Test
-    public void jokeShouldHaveUser() {
+    public void addJoke_shouldHasUser() {
         //given
-        JokeDTO jokeDTO = givenJokeDTO("This is joke title", "This is joke content", LocalDate.now(Clock.systemDefaultZone()), JokeCategoryEnum.CATEGORY_1.name(), 55L);
+        JokeDTO jokeDTO = givenJokeDTO(LocalDate.now(Clock.systemDefaultZone()), JokeCategoryEnum.CATEGORY_1.name());
         Mockito.when(userRepository.getOne(55L)).thenReturn(User.builder().id(55L).build());
         //when
         joke = jokeService.addJoke(jokeDTO);
@@ -109,9 +97,9 @@ public class JokeServiceAddJokeTest {
     }
 
     @Test
-    public void jokeShouldBeSaveWhenRunAdd() {
+    public void addJoke_shouldBeSaveWhenRunAdd() {
         //given
-        JokeDTO jokeDTO = givenJokeDTO("This is joke title", "This is joke content", LocalDate.now(Clock.systemDefaultZone()), JokeCategoryEnum.CATEGORY_1.name(), 55L);
+        JokeDTO jokeDTO = givenJokeDTO(LocalDate.now(Clock.systemDefaultZone()), JokeCategoryEnum.CATEGORY_1.name());
         Mockito.when(jokeRepsitory.save(any(Joke.class))).thenAnswer(invocationOnMock -> {
             Joke joke = invocationOnMock.getArgument(0);
             savedJokes.add(joke);
@@ -123,13 +111,13 @@ public class JokeServiceAddJokeTest {
         assertThat(savedJokes).containsOnly(joke);
     }
 
-    private JokeDTO givenJokeDTO(String title, String content, LocalDate addDate, String category, Long userId) {
+    private JokeDTO givenJokeDTO(LocalDate addDate, String category) {
         return JokeDTO.builder()
-                .title(title)
-                .content(content)
+                .title("This is joke title")
+                .content("This is joke content")
                 .addDate(addDate)
                 .category(category)
-                .userId(userId)
+                .userId(55L)
                 .build();
     }
 
